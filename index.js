@@ -4,7 +4,22 @@ const path = require('path');
 const url = require('url');
 
 // Calendar Data File
-const CALENDAR_FILE = path.join(__dirname, 'data', 'calendar.ics');
+const DATA_DIR = path.join(__dirname, 'data');
+const CALENDAR_FILE = path.join(DATA_DIR, 'calendar.ics');
+
+// Ensure data folder and calendar file exist
+function initializeCalendarFile() {
+    if (!fs.existsSync(DATA_DIR)) {
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    if (!fs.existsSync(CALENDAR_FILE)) {
+        const defaultCalendar = 'BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//CalDAV-NodeJS//EN\nCALSCALE:GREGORIAN\nEND:VCALENDAR';
+        fs.writeFileSync(CALENDAR_FILE, defaultCalendar, 'utf8');
+    }
+}
+
+// Initialize on startup
+initializeCalendarFile();
 
 // Helper Functions
 function readCalendar() {
@@ -60,4 +75,5 @@ const server = http.createServer(handleRequest);
 // Start the server
 const PORT = 8008;
 server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}/caldav`);
 });

@@ -15,28 +15,25 @@ This project implements a very basic CalDav server using Node.js. It allows basi
 ## Installation
 
 1. Clone this repository:
-    ```bash
-    git clone https://github.com/SaidTorres3/CalDav-NodeJS.git
-    ```
+   ```bash
+   git clone https://github.com/SaidTorres3/CalDav-NodeJS.git
+   ```
 2. Navigate to the project directory:
-    ```bash
-    cd CalDav-NodeJS
-    ```
+   ```bash
+   cd CalDav-NodeJS
+   ```
 3. Install the dependencies:
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 ## Usage
 
-1. Create a new folder called `data` in the project directory.
+1. Start the server:
+   ```bash
+   npm run start
+   ```
+2. The server will be listening on port `8008`.
+3. Create a new calendar with the URL `http://localhost:8008/caldav` in a calendar client like Thunderbird. It doesn't require login.
 
-2. Create a new file called `calendar.ics` in the `data` folder.
-
-3. Start the server:
-    ```bash
-    npm run start
-    ```
-4. The server will be listening on port `8008`.
-
-5. Create a new calendar with the URL `http://localhost:8008/caldav` in a calendar client like Thunderbird. It doesn't require login.
+All the data is stored in `/data/calendar.ics`.
